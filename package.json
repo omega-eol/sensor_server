@@ -1,0 +1,14 @@
+{
+  "name": "sensor_server",
+  "version": "1.0.0",
+  "description": "REST API for air quality sensors project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Artur Abdullin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

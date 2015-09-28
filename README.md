@@ -22,18 +22,31 @@ Sensor box (`/models/box.js`) is the main entity in the system Each sensor box c
 var BoxSchema = new Schema({
     address: String, // address where we deploy the sensor box
     deployment_date: { type: Date }, // when we deployed it
-    sensors: [ { type: Schema.Types.ObjectId, ref: 'Sensor' } ]  // a set of sensors inside the sensor box (0 or more)
+    sensors: [ { type: Schema.Types.ObjectId, ref: 'Sensor' } ]  // a set of Sensors inside the sensor box (0 or more)
 });
 ```
 
 Sensor (`/models/sensor.js`) - could any sensor we want.
 ```javascript
 var SensorSchema = new Schema({
-    _box: { type: Schema.Types.ObjectId, ref: 'Box'}, // Foreign key to the sensor box
+    _box: { type: Schema.Types.ObjectId, ref: 'Box'}, // foreign key to the Sensor Box
     name: String, // name of the sensor
     description: String, // description
     n_outputs: Number, // number of outputs
-    dataEntries: [ { type: Schema.Types.ObjectId, ref: 'DataEntry' } ] // a set of data entries
+    dataEntries: [ { type: Schema.Types.ObjectId, ref: 'DataEntry' } ] // a set of Data Entries
+});
+```
+
+Data Entry (`/models/sensor.js`) - here we store sensor's data. For now we keep the data model simple and assume that a sensor can output at most 5 values.
+```javascript
+var DataEntrySchema = new Schema({
+    _sensor : {type: Schema.Types.ObjectId, ref: "Sensor"}, // foreign key to the Sensor
+    date: { type: Date }, // timestamp of the data entry
+    o1: Number, // output value 1
+    o2: Number, // output value 2
+    o3: Number, // output value 3
+    o4: Number, // output value 4
+    o5: Number  // output value 5
 });
 ```
 

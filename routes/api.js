@@ -78,7 +78,7 @@ router.post('/box', function(req, res) {
 });
 
 // POST - create a sensor for a box
-router.post('/box/:id/sensor', function(req, res){
+router.post('/box/:id/sensors', function(req, res){
     
     // define new sensor
     var sensor = new SensorModel({

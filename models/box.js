@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var BoxSchema = new Schema({
     address: String,
-    deployment_date: { type: Date, default: Date.now },
+    deployment_date: { type: Date },
     sensors: [ { type: Schema.Types.ObjectId, ref: 'Sensor' } ]
 });
 

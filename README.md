@@ -15,6 +15,28 @@ To start the server use: `node server.js`
 	7. `POST /api/box/:id/sensors` - creates a new sensor for box ID `:id`
 	8. `POST /api/sensors/:id/dataentries` - creates a new data entry for sensor ID `:id`
 
+## Data Model
+
+Sensor box (`/models/box.js`) is the main entity in the system Each sensor box consists of 0 or more sensors.
+```javascript
+var BoxSchema = new Schema({
+    address: String, // address where we deploy the sensor box
+    deployment_date: { type: Date }, // when we deployed it
+    sensors: [ { type: Schema.Types.ObjectId, ref: 'Sensor' } ]  // a set of sensors inside the sensor box (0 or more)
+});
+```
+
+Sensor (`/models/sensor.js`) - could any sensor we want.
+```javascript
+var SensorSchema = new Schema({
+    _box: { type: Schema.Types.ObjectId, ref: 'Box'}, // Foreign key to the sensor box
+    name: String, // name of the sensor
+    description: String, // description
+    n_outputs: Number, // number of outputs
+    dataEntries: [ { type: Schema.Types.ObjectId, ref: 'DataEntry' } ] // a set of data entries
+});
+```
+
 ## Dependencies
 1. Mongo DB
 2. Node JS with npm (express, mongoose, body-parser)

@@ -50,7 +50,7 @@ router.get('/sensors/:id', function(req, res){
 
 // GET - return all data entries of a sensor
 router.get('/sensors/:id/dataentries', function(req, res){
-    return DataEntryModel.find({ _sensor: req.params.id  }).exec(function (err, dataEntry) {
+    return DataEntryModel.find({ _sensor: req.params.id  }).sort({date:'desc'}).limit(20).exec(function (err, dataEntry) {
         if (err) return console.log(err);
         return res.send(dataEntry);
     });
@@ -121,7 +121,7 @@ router.post('/sensors/:id/dataentry', function(req, res){
     // define a Data Entry
     var dataEntry = new DataEntryModel({
         _sensor : req.params.id,
-        date: req.body.date,
+        date: new Date(),
         o1: req.body.o1,
         o2: req.body.o2,
         o3: req.body.o3,

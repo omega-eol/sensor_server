@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 
 var DataEntrySchema = new Schema({
     _sensor : {type: Number, ref: "Sensor"}
-    date: { type: Date, default: Date.now },
+    date: { type: Date},
     o1: Number,
     o2: Number,
     o3: Number,
